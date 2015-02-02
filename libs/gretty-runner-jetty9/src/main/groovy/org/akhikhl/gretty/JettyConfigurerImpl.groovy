@@ -7,8 +7,10 @@
  * See the file "CONTRIBUTORS" for complete list of contributors.
  */
 package org.akhikhl.gretty
-import ch.qos.logback.classic.selector.servlet.ContextDetachingSCL
-import ch.qos.logback.classic.selector.servlet.LoggerContextFilter
+
+//import ch.qos.logback.classic.selector.servlet.ContextDetachingSCL
+//import ch.qos.logback.classic.selector.servlet.LoggerContextFilter
+
 import org.eclipse.jetty.annotations.AnnotationConfiguration
 import org.eclipse.jetty.plus.webapp.EnvConfiguration
 import org.eclipse.jetty.plus.webapp.PlusConfiguration
@@ -16,7 +18,6 @@ import org.eclipse.jetty.security.HashLoginService
 import org.eclipse.jetty.server.*
 import org.eclipse.jetty.server.handler.ContextHandlerCollection
 import org.eclipse.jetty.server.session.HashSessionManager
-import org.eclipse.jetty.servlet.FilterHolder
 import org.eclipse.jetty.util.component.LifeCycle
 import org.eclipse.jetty.util.resource.FileResource
 import org.eclipse.jetty.util.resource.Resource
@@ -27,6 +28,7 @@ import org.eclipse.jetty.xml.XmlConfiguration
 import org.slf4j.Logger
 
 import javax.servlet.DispatcherType
+
 /**
  *
  * @author akhikhl
@@ -206,8 +208,8 @@ class JettyConfigurerImpl implements JettyConfigurer {
     context.addSystemClass('groovy.lang.')
     context.setExtraClasspath(webappClassPath.collect { it.endsWith('.jar') ? it : (it.endsWith('/') ? it : it + '/') }.findAll { !isServletApi(it) }.join(';'))
     context.setInitParameter('org.eclipse.jetty.servlet.Default.useFileMappedBuffer', serverParams.productMode ? 'true' : 'false')
-    context.addEventListener(new ContextDetachingSCL())
-    context.addFilter(LoggerContextFilter.class, '/*', EnumSet.of(DispatcherType.REQUEST))
+//    context.addEventListener(new ContextDetachingSCL())
+//    context.addFilter(LoggerContextFilter.class, '/*', EnumSet.of(DispatcherType.REQUEST))
     return context
   }
 
