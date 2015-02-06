@@ -47,12 +47,17 @@ bintray {
     desc = thisProject.description
     licenses = [ thisProject.license ]
     labels = thisProject.projectLabels.split(',')
+    publicDownloadNumbers = true
+    version {
+        name = thisProject.version
+    }
   }
   dryRun = false
+  publish = false
 }
 
 bintrayUpload.dependsOn assemble
-bintrayUpload.finalizedBy parent.tasks.bintraySign
+//bintrayUpload.finalizedBy parent.tasks.bintraySign
 
 publishing {
   publications {
